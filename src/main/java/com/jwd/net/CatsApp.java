@@ -20,7 +20,7 @@ public class CatsApp
 	@ResponseBody
 	String home()
 	{
-		return	"hello you sassy ragamuffin";
+		return	"hello you sassy ragamuffin  -  and you are a budabudow";
 	}
 
 }
