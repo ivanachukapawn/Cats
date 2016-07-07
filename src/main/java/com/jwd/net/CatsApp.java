@@ -8,7 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @SpringBootApplication
-@Controller
 public class CatsApp extends SpringBootServletInitializer
 {
 
@@ -17,11 +16,7 @@ public class CatsApp extends SpringBootServletInitializer
 		SpringApplication.run(CatsApp.class, args);
 	}
 
-	@RequestMapping("/")
-	String home()
-	{
-		return	"home";
-	}
+	
 
 	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder builder)
