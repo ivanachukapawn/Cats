@@ -48,7 +48,7 @@
 				<li><a href="${contextRoot}/about">About</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="${contextRoot}/">something here</a></li>
+				<li><a href="${contextRoot}/">development news</a></li>
 			</ul>
 		</div>
 		<!--/.nav-collapse -->
