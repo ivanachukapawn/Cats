@@ -15,5 +15,9 @@
 	<definition name="app.about" extends="app.default">
 		<put-attribute name="content" value="/WEB-INF/tiles/about.jsp" />
 	</definition>
+	
+	<definition name="app.addNews" extends="app.default">
+		<put-attribute name="content" value="/WEB-INF/tiles/addNews.jsp" />
+	</definition>
 
 </tiles-definitions>

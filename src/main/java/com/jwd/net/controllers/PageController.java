@@ -17,4 +17,10 @@ public class PageController
 	{
 		return	"app.about";
 	}
+	
+	@RequestMapping("/addnews")
+	String addNews()
+	{
+		return	"app.addNews";
+	}
 }
