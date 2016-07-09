@@ -33,7 +33,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Ragamuffin City</a>
+          <a class="navbar-brand" href="/"><IMG SRC="/img/lilah.jpg" WIDTH=50 HEIGHT=50></a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
