@@ -1,0 +1,16 @@
+.navbar {
+	background-color: skyblue;
+	border-color: skyblue;
+}
+
+.navbar > .container > div > .navbar-nav > li > a {
+	background: none;
+	color: mediumblue;
+	font-weight: bold;
+}
+
+.navbar > .container > div > .navbar-nav > li > a:hover {
+	background: none;
+	color: yellow;
+	font-weight: bold;
+}
