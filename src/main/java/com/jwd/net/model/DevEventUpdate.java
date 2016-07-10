@@ -2,17 +2,50 @@ package com.jwd.net.model;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.PrePersist;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+@Entity
+@Table(name = "dev_event")
 public class DevEventUpdate
 {
-	private	Integer	id;
-	private	String	text;
-	private	Date	added;
+	@Id
+	@Column(name = "id")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Integer id;
+
+	@Column(name = "text")
+	private String text;
+
+	@Column(name = "added")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date added;
+
+	@PrePersist
+	protected void onCreate()
+	{
+		if (added == null)
+		{
+			added = new Date();
+		}
+	}
 	
+	public DevEventUpdate()
+	{
+	}
+
 	public DevEventUpdate(String text)
 	{
 		this.text = text;
 	}
-	
+
 	public DevEventUpdate(String text, Date added)
 	{
 		this.text = text;
@@ -23,32 +56,32 @@ public class DevEventUpdate
 	{
 		return id;
 	}
-	
+
 	public void setId(Integer id)
 	{
 		this.id = id;
 	}
-	
+
 	public String getText()
 	{
 		return text;
 	}
-	
+
 	public void setText(String text)
 	{
 		this.text = text;
 	}
-	
+
 	public Date getAdded()
 	{
 		return added;
 	}
-	
+
 	public void setAdded(Date added)
 	{
 		this.added = added;
 	}
-	
+
 	@Override
 	public int hashCode()
 	{
@@ -59,7 +92,7 @@ public class DevEventUpdate
 		result = prime * result + ((text == null) ? 0 : text.hashCode());
 		return result;
 	}
-	
+
 	@Override
 	public boolean equals(Object obj)
 	{
