@@ -2,8 +2,7 @@
 	pageEncoding="ISO-8859-1"%>
 
 <p>
-	<strong>This website is being developed using Spring Boot, Maven,
-		Eclipse, Java 1.8, MySQL, Apache Tiles, Twitter Bootstrap - with the invaluable instruction of John W Purcell 
+	<strong>I'm developing this website using Eclipse, Spring Boot, Git, Maven, Java 1.8, MySql, Apache Tiles, and Twitter Bootstrap 
 	</strong>
 </p>
 

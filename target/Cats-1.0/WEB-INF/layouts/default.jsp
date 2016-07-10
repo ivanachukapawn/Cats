@@ -13,7 +13,7 @@
 
 <title><tiles:insertAttribute name="title" /></title>
 
-<c:set var="contextRoot" value="${pageContext.request.contextPath}"/>
+<c:set var="contextRoot" value="${pageContext.request.contextPath}" />
 
 <!-- Bootstrap -->
 <link href="${contextRoot}/css/bootstrap.min.css" rel="stylesheet">
@@ -39,23 +39,26 @@
 					class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="/"><IMG SRC="${contextRoot}/img/lilah.jpg"
-				WIDTH=50 HEIGHT=50></a>
+			<a class="navbar-brand" href="/"><IMG
+				SRC="${contextRoot}/img/lilah.jpg" WIDTH=50 HEIGHT=50></a>
 		</div>
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav">
 				<li class="active"><a href="${contextRoot}/">Home</a></li>
 				<li><a href="${contextRoot}/about">About</a></li>
+
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="${contextRoot}/">development news</a></li>
+				<li><a href="${contextRoot}/addnews">site development news</a></li>
 			</ul>
 		</div>
 		<!--/.nav-collapse -->
 	</div>
 	</nav>
 
-	<tiles:insertAttribute name="content" />
+	<div class=container>
+		<tiles:insertAttribute name="content" />
+	</div>
 
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 	<script
