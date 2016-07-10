@@ -16,7 +16,14 @@
 			</div>
 
 			<div class="panel-body">
-				this is the panel body
+				<form>
+					<div class="form-group">
+						<textarea name="text" rows="10" cols="50"></textarea>
+					</div>
+				
+					<input type="submit" name="submit" value="add dev event" />
+				
+				</form>	
 			</div>
 
 		</div>

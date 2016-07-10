@@ -19,3 +19,11 @@
 	color: blue;
 	font-weight: bold;
 }
+
+textarea {
+	width: 100%;
+}
+
+input {
+	color: green;
+}
