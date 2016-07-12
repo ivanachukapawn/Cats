@@ -123,4 +123,12 @@ public class DevEventUpdate
 			return false;
 		return true;
 	}
+
+	@Override
+	public String toString()
+	{
+		return "DevEventUpdate [id=" + id + ", text=" + text + ", added=" + added + "]";
+	}
+	
+	
 }

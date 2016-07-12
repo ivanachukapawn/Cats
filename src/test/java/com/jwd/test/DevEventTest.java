@@ -1,5 +1,7 @@
 package com.jwd.test;
 
+import java.util.Calendar;
+
 import javax.transaction.Transactional;
 
 import org.junit.Assert;
@@ -21,21 +23,50 @@ import com.jwd.net.model.DevEventUpdateDao;
 public class DevEventTest
 {
 	@Autowired
-	private	DevEventUpdateDao	devEventUpdateDao;
-	
+	private DevEventUpdateDao devEventUpdateDao;
+
 	@Test
-	public	void testSave()
+	public void testSave()
 	{
-		DevEventUpdate	devEventUpdate	=	new	DevEventUpdate("test update text");
-		
+		DevEventUpdate devEventUpdate = new DevEventUpdate("test update text");
+
 		devEventUpdateDao.save(devEventUpdate);
-		
+
 		Assert.assertNotNull("non-null Id", devEventUpdate.getId());
 		Assert.assertNotNull("non-null Date", devEventUpdate.getAdded());
+
+		DevEventUpdate retrieved = devEventUpdateDao.findOne(devEventUpdate.getId());
+
+		Assert.assertEquals("matching devEventUpdates", devEventUpdate, retrieved);
+	}
+
+	@Test
+	public void testFindLatest()
+	{
+		DevEventUpdate	lastEventUpdate	=	null;
 		
-		DevEventUpdate	retrieved	=	devEventUpdateDao.findOne(devEventUpdate.getId());
+		Calendar	calendar	=	Calendar.getInstance();
+		for (int i = 0; i < 10; i++)
+		{
+			calendar.add(Calendar.DAY_OF_YEAR, 1);
+			
+			DevEventUpdate	devEventUpdate	=	new	DevEventUpdate("event update # " + i, calendar.getTime());
+
+			devEventUpdateDao.save(devEventUpdate);
+			
+			lastEventUpdate	=	devEventUpdate;
+			
+			
+		}
 		
-		Assert.assertEquals("matching devEventUpdates", devEventUpdate,retrieved);
+		DevEventUpdate	eventRetrieved	=	devEventUpdateDao.findFirstByOrderByAddedDesc();
+		
+		Assert.assertEquals("latest event ", lastEventUpdate, eventRetrieved);
+		
+		System.out.println("retrieved event = " + eventRetrieved);
+		System.out.println("last event saved = " + lastEventUpdate);
+		
+
 	}
 
 }

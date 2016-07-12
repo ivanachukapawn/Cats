@@ -4,5 +4,6 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface  DevEventUpdateDao extends CrudRepository<DevEventUpdate,Integer>
 {
+	DevEventUpdate	findFirstByOrderByAddedDesc();
 
 }
