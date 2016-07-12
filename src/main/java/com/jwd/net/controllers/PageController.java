@@ -1,7 +1,12 @@
 package com.jwd.net.controllers;
 
+import java.util.Date;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.jwd.net.model.DevEventUpdate;
 
 @Controller
 public class PageController
@@ -19,8 +24,14 @@ public class PageController
 	}
 	
 	@RequestMapping("/addnews")
-	String addNews()
+	ModelAndView addNews(ModelAndView modelAndView)
 	{
-		return	"app.addNews";
+		modelAndView.setViewName("app.addNews");
+		
+		DevEventUpdate	devEventUpdate	=	new	DevEventUpdate();
+		
+		modelAndView.getModel().put("devEventUpdate", devEventUpdate);
+		
+		return	modelAndView;
 	}
 }
