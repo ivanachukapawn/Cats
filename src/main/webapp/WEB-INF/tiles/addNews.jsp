@@ -26,7 +26,7 @@
 
 			<div class="panel-body">
 			
-				<form:form commandName="devEventUpdate">
+				<form:form modelAttribute="devEventUpdate">
 					<div class="form-group">
 						<form:textarea path="text" name="text" rows="10" cols="50"></form:textarea>
 					</div>

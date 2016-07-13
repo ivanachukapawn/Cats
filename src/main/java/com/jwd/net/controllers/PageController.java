@@ -4,6 +4,7 @@ import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -30,11 +31,9 @@ public class PageController
 	}
 	
 	@RequestMapping(value="/addnews",method=RequestMethod.GET)
-	ModelAndView addNews(ModelAndView modelAndView)
+	ModelAndView addNews(ModelAndView modelAndView,@ModelAttribute("devEventUpdate")DevEventUpdate devEventUpdate)
 	{
 		modelAndView.setViewName("app.addNews");
-		
-		DevEventUpdate	devEventUpdate	=	new	DevEventUpdate();
 		
 		DevEventUpdate	latestDevEvent	=	devEventUpdateService.getLatestDevEvent();
 		
@@ -44,14 +43,13 @@ public class PageController
 		modelAndView.getModel().put("latestAdded", latestAdded);
 		modelAndView.getModel().put("latestText", latestText);
 		
-		modelAndView.getModel().put("devEventUpdate", devEventUpdate);
 		modelAndView.getModel().put("latestDevEvent", latestDevEvent);
 		
 		return	modelAndView;
 	}
 	
 	@RequestMapping(value="/addnews",method=RequestMethod.POST)
-	ModelAndView addNews(ModelAndView modelAndView,DevEventUpdate devEventUpdate)
+	ModelAndView addNews(ModelAndView modelAndView,@ModelAttribute("devEventUpdate")DevEventUpdate devEventUpdate,String temp)
 	{
 		modelAndView.setViewName("app.addNews");
 		
