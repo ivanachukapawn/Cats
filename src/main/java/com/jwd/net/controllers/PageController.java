@@ -49,7 +49,7 @@ public class PageController
 	}
 	
 	@RequestMapping(value="/addnews",method=RequestMethod.POST)
-	ModelAndView addNews(ModelAndView modelAndView,@ModelAttribute("devEventUpdate")DevEventUpdate devEventUpdate,String temp)
+	ModelAndView addNews(ModelAndView modelAndView,DevEventUpdate devEventUpdate,String temp)
 	{
 		modelAndView.setViewName("app.addNews");
 		
@@ -65,6 +65,8 @@ public class PageController
 		modelAndView.getModel().put("latestText", latestText);
 		
 		modelAndView.getModel().put("latestDevEvent", latestDevEvent);
+		
+		modelAndView.getModel().put("devEventUpdate", new DevEventUpdate());
 		
 		return	modelAndView;
 	}
