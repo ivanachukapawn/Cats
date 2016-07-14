@@ -19,5 +19,13 @@
 	<definition name="app.addNews" extends="app.default">
 		<put-attribute name="content" value="/WEB-INF/tiles/addNews.jsp" />
 	</definition>
+	
+	<definition name="app.viewDevEvents" extends="app.default">
+		<put-attribute name="content" value="/WEB-INF/tiles/viewDevEvents.jsp" />
+	</definition>
+	
+	
+	
+	
 
 </tiles-definitions>

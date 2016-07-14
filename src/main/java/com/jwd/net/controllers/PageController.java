@@ -5,11 +5,13 @@ import java.util.Date;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.jwd.net.model.DevEventUpdate;
@@ -73,5 +75,18 @@ public class PageController
 		modelAndView.getModel().put("latestDevEvent", latestDevEvent);
 
 		return modelAndView;
+	}
+
+	@RequestMapping (value="/viewDevEvents", method=RequestMethod.GET)
+	ModelAndView viewDevEvents(ModelAndView modelAndView, @RequestParam(name="p", defaultValue="1") int pageNumber)
+	{
+			
+		Page<DevEventUpdate>	page = 	devEventUpdateService.getPage(pageNumber);
+		
+		modelAndView.getModel().put("page", page);
+		
+		modelAndView.setViewName("app.viewDevEvents");
+		
+		return	modelAndView;
 	}
 }
