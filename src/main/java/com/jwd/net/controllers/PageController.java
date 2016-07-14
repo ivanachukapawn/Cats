@@ -2,8 +2,11 @@ package com.jwd.net.controllers;
 
 import java.util.Date;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,58 +19,59 @@ import com.jwd.net.service.DevEventUpdateService;
 public class PageController
 {
 	@Autowired
-	private	DevEventUpdateService	devEventUpdateService;
-	
+	private DevEventUpdateService devEventUpdateService;
+
 	@RequestMapping("/")
 	String home()
 	{
-		return	"app.homepage";
+		return "app.homepage";
 	}
-	
+
 	@RequestMapping("/about")
 	String about()
 	{
-		return	"app.about";
+		return "app.about";
 	}
-	
-	@RequestMapping(value="/addnews",method=RequestMethod.GET)
-	ModelAndView addNews(ModelAndView modelAndView,@ModelAttribute("devEventUpdate")DevEventUpdate devEventUpdate)
+
+	@RequestMapping(value = "/addnews", method = RequestMethod.GET)
+	ModelAndView addNews(ModelAndView modelAndView, @ModelAttribute("devEventUpdate") DevEventUpdate devEventUpdate)
 	{
 		modelAndView.setViewName("app.addNews");
-		
-		DevEventUpdate	latestDevEvent	=	devEventUpdateService.getLatestDevEvent();
-		
-		Date	latestAdded	=	latestDevEvent.getAdded();
-		String	latestText	=	latestDevEvent.getText();
-		
+
+		DevEventUpdate latestDevEvent = devEventUpdateService.getLatestDevEvent();
+
+		Date latestAdded = latestDevEvent.getAdded();
+		String latestText = latestDevEvent.getText();
+
 		modelAndView.getModel().put("latestAdded", latestAdded);
 		modelAndView.getModel().put("latestText", latestText);
-		
+
 		modelAndView.getModel().put("latestDevEvent", latestDevEvent);
-		
-		return	modelAndView;
+
+		return modelAndView;
 	}
-	
-	@RequestMapping(value="/addnews",method=RequestMethod.POST)
-	ModelAndView addNews(ModelAndView modelAndView,DevEventUpdate devEventUpdate,String temp)
+
+	@RequestMapping(value = "/addnews", method = RequestMethod.POST)
+	ModelAndView addNews(ModelAndView modelAndView, @Valid DevEventUpdate devEventUpdate, BindingResult result)
 	{
 		modelAndView.setViewName("app.addNews");
-		
-		devEventUpdateService.save(devEventUpdate);
-		
-		DevEventUpdate	latestDevEvent	=	devEventUpdateService.getLatestDevEvent();
-		
-		Date	latestAdded	=	latestDevEvent.getAdded();
-		String	latestText	=	latestDevEvent.getText();
-		
-		
+
+		if (!result.hasErrors())
+		{
+			devEventUpdateService.save(devEventUpdate);
+			modelAndView.getModel().put("devEventUpdate", new DevEventUpdate());
+		}
+
+		DevEventUpdate latestDevEvent = devEventUpdateService.getLatestDevEvent();
+
+		Date latestAdded = latestDevEvent.getAdded();
+		String latestText = latestDevEvent.getText();
+
 		modelAndView.getModel().put("latestAdded", latestAdded);
 		modelAndView.getModel().put("latestText", latestText);
-		
+
 		modelAndView.getModel().put("latestDevEvent", latestDevEvent);
-		
-		modelAndView.getModel().put("devEventUpdate", new DevEventUpdate());
-		
-		return	modelAndView;
+
+		return modelAndView;
 	}
 }

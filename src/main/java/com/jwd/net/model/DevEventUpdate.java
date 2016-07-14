@@ -11,6 +11,8 @@ import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "dev_event")
@@ -21,6 +23,7 @@ public class DevEventUpdate
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 
+	@Size(min=5,max=255, message="{addNews.text.size}")
 	@Column(name = "text")
 	private String text;
 
