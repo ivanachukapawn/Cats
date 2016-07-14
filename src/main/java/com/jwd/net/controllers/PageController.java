@@ -63,7 +63,7 @@ public class PageController
 			devEventUpdateService.save(devEventUpdate);
 			modelAndView.getModel().put("devEventUpdate", new DevEventUpdate());
 		}
-
+		
 		DevEventUpdate latestDevEvent = devEventUpdateService.getLatestDevEvent();
 
 		Date latestAdded = latestDevEvent.getAdded();

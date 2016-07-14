@@ -12,7 +12,7 @@ import com.jwd.net.model.DevEventUpdateDao;
 @Service
 public class DevEventUpdateService
 {
-	private	final	static	int	PAGESIZE	=	6;
+	private	final	static	int	PAGESIZE	=	3;
 	
 	@Autowired
 	private DevEventUpdateDao devEventUpdateDao;

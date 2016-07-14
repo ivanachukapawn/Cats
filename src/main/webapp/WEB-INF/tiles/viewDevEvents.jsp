@@ -13,11 +13,9 @@
 
 			<div class="panel panel-default">
 
-				<div class="panel-body">
-
-					<c:out value="${devEventUpdate.text}"></c:out>
-
-				</div>
+				
+				<fmt:formatDate pattern="EEEE MMMM d y 'at ' H mm" value="${devEventUpdate.added}"></fmt:formatDate>
+				<strong><c:out value="${devEventUpdate.text}"></c:out></strong>
 
 			</div>
 
