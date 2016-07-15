@@ -20,8 +20,7 @@ import com.jwd.net.service.DevEventUpdateService;
 @Controller
 public class PageController
 {
-	@Autowired
-	private DevEventUpdateService devEventUpdateService;
+	
 
 	@RequestMapping("/")
 	String home()
@@ -35,58 +34,5 @@ public class PageController
 		return "app.about";
 	}
 
-	@RequestMapping(value = "/addnews", method = RequestMethod.GET)
-	ModelAndView addNews(ModelAndView modelAndView, @ModelAttribute("devEventUpdate") DevEventUpdate devEventUpdate)
-	{
-		modelAndView.setViewName("app.addNews");
-
-		DevEventUpdate latestDevEvent = devEventUpdateService.getLatestDevEvent();
-
-		Date latestAdded = latestDevEvent.getAdded();
-		String latestText = latestDevEvent.getText();
-
-		modelAndView.getModel().put("latestAdded", latestAdded);
-		modelAndView.getModel().put("latestText", latestText);
-
-		modelAndView.getModel().put("latestDevEvent", latestDevEvent);
-
-		return modelAndView;
-	}
-
-	@RequestMapping(value = "/addnews", method = RequestMethod.POST)
-	ModelAndView addNews(ModelAndView modelAndView, @Valid DevEventUpdate devEventUpdate, BindingResult result)
-	{
-		modelAndView.setViewName("app.addNews");
-
-		if (!result.hasErrors())
-		{
-			devEventUpdateService.save(devEventUpdate);
-			modelAndView.getModel().put("devEventUpdate", new DevEventUpdate());
-		}
-		
-		DevEventUpdate latestDevEvent = devEventUpdateService.getLatestDevEvent();
-
-		Date latestAdded = latestDevEvent.getAdded();
-		String latestText = latestDevEvent.getText();
-
-		modelAndView.getModel().put("latestAdded", latestAdded);
-		modelAndView.getModel().put("latestText", latestText);
-
-		modelAndView.getModel().put("latestDevEvent", latestDevEvent);
-
-		return modelAndView;
-	}
-
-	@RequestMapping (value="/viewDevEvents", method=RequestMethod.GET)
-	ModelAndView viewDevEvents(ModelAndView modelAndView, @RequestParam(name="p", defaultValue="1") int pageNumber)
-	{
-			
-		Page<DevEventUpdate>	page = 	devEventUpdateService.getPage(pageNumber);
-		
-		modelAndView.getModel().put("page", page);
-		
-		modelAndView.setViewName("app.viewDevEvents");
-		
-		return	modelAndView;
-	}
+	
 }
