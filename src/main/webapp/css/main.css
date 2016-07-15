@@ -3,18 +3,19 @@
 	border-color: skyblue;
 }
 
-.navbar > .container > div > .navbar-nav > li > a {
+.navbar>.container>div>.navbar-nav>li>a {
 	background: none;
 	color: mediumblue;
 	font-weight: bold;
 }
 
-.navbar > .container > div > .navbar-nav > li > a:hover {
+.navbar>.container>div>.navbar-nav>li>a:hover {
 	background: none;
 	color: yellow;
 	font-weight: bold;
 }
-.panel > .panel-heading {
+
+.panel>.panel-heading {
 	background-color: khaki;
 	color: blue;
 	font-weight: bold;
@@ -31,7 +32,14 @@ input {
 .errors {
 	color: red;
 }
+
 .pagination {
 	margin-top: 20px;
 	margin-bottom: 40px;
+}
+
+.homepage-devEventUpdate {
+	text-align: center;
+	margin-top: 30px;
+	font-size: larger;
 }
