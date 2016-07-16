@@ -45,7 +45,7 @@
 
 				<fmt:formatDate pattern="EEEE MMMM d y 'at ' H mm"
 					value="${devEventUpdate.added}"></fmt:formatDate>
-				<strong><c:out value="${devEventUpdate.text}"></c:out></strong>
+					${devEventUpdate.text}
 
 			</div>
 

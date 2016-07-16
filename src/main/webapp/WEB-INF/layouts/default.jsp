@@ -49,7 +49,13 @@
 
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="${contextRoot}/addnews">site development news</a></li>
+				<li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown" role="button" aria-haspopup="true"
+					aria-expanded="false">development events<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="${contextRoot}/addnews">development event add</a></li>
+						<li><a href="${contextRoot}/viewDevEvents">view development events</a></li>
+					</ul></li>
 			</ul>
 		</div>
 		<!--/.nav-collapse -->

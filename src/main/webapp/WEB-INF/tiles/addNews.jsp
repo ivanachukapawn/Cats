@@ -46,7 +46,7 @@
 
 				<fmt:formatDate pattern="EEEE MMMM d y 'at ' H mm"
 					value="${latestAdded}"></fmt:formatDate>
-				<c:out value="${latestText}"></c:out>
+					${latestText}
 
 			</div>
 
