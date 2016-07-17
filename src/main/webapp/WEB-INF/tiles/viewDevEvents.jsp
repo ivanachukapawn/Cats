@@ -9,7 +9,7 @@
 <div class=row>
 
 	<div class="col-md-8 col-md-offset-2">
-	
+
 		<div class="pagination">
 
 			<c:forEach var="pageNumber" begin="1" end="${page.totalPages}">
@@ -24,9 +24,6 @@
 
 				</c:choose>
 
-
-
-
 				<c:if test="${pageNumber != page.totalPages }">
 					|
 				</c:if>
@@ -38,21 +35,26 @@
 
 
 		<c:forEach var="devEventUpdate" items="${page.content }">
-
-
+		
+			<c:url var="editLink" value="/editevent?id=${devEventUpdate.id}"></c:url>
+			<c:url var="deleteLink" value="/deleteevent?id=${devEventUpdate.id}"></c:url>
+		
 			<div class="panel panel-default">
 
 
-				<fmt:formatDate pattern="EEEE MMMM d y 'at ' H mm"
-					value="${devEventUpdate.added}"></fmt:formatDate>
+				<div>
+					<fmt:formatDate pattern="EEEE MMMM d y 'at ' H mm"
+						value="${devEventUpdate.added}"></fmt:formatDate>
 					${devEventUpdate.text}
-
+				</div>
+				
+				<div class="edit-links pull-right">
+				
+					<a href="${editLink}">edit</a> | <a onclick="return confirm('really delete it?')"; href="${deleteLink}">delete</a>
+				
+				</div>
+				
 			</div>
-
-
-
-
-
 
 		</c:forEach>
 

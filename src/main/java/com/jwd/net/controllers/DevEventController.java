@@ -22,7 +22,43 @@ public class DevEventController
 {
 	@Autowired
 	private DevEventUpdateService devEventUpdateService;
-	
+
+	@RequestMapping(value = "/editevent", method = RequestMethod.GET)
+	ModelAndView editEvent(ModelAndView modelAndView, @RequestParam(value = "id") Integer id)
+	{
+		DevEventUpdate devEventUpdate = devEventUpdateService.get(id);
+
+		modelAndView.getModel().put("devEventUpdate", devEventUpdate);
+
+		modelAndView.setViewName("app.editEvent");
+
+		return modelAndView;
+	}
+
+	@RequestMapping(value = "/editevent", method = RequestMethod.POST)
+	ModelAndView editEvent(ModelAndView modelAndView, @Valid DevEventUpdate devEventUpdate, BindingResult result)
+	{
+		modelAndView.setViewName("app.editEvent");
+
+		if (!result.hasErrors())
+		{
+			devEventUpdateService.save(devEventUpdate);
+			modelAndView.setViewName("redirect:/viewDevEvents");
+		}
+
+		return modelAndView;
+	}
+
+	@RequestMapping(value = "/deleteevent")
+	ModelAndView deleteEvent(ModelAndView modelAndView, @RequestParam(name = "id") Integer id)
+	{
+		devEventUpdateService.delete(id);
+
+		modelAndView.setViewName("redirect:/viewDevEvents");
+
+		return modelAndView;
+	}
+
 	@RequestMapping(value = "/addnews", method = RequestMethod.GET)
 	ModelAndView addNews(ModelAndView modelAndView, @ModelAttribute("devEventUpdate") DevEventUpdate devEventUpdate)
 	{
@@ -52,7 +88,7 @@ public class DevEventController
 			modelAndView.getModel().put("devEventUpdate", new DevEventUpdate());
 			modelAndView.setViewName("redirect:/viewDevEvents");
 		}
-		
+
 		DevEventUpdate latestDevEvent = devEventUpdateService.getLatestDevEvent();
 
 		Date latestAdded = latestDevEvent.getAdded();
@@ -66,16 +102,16 @@ public class DevEventController
 		return modelAndView;
 	}
 
-	@RequestMapping (value="/viewDevEvents", method=RequestMethod.GET)
-	ModelAndView viewDevEvents(ModelAndView modelAndView, @RequestParam(name="p", defaultValue="1") int pageNumber)
+	@RequestMapping(value = "/viewDevEvents", method = RequestMethod.GET)
+	ModelAndView viewDevEvents(ModelAndView modelAndView, @RequestParam(name = "p", defaultValue = "1") int pageNumber)
 	{
-			
-		Page<DevEventUpdate>	page = 	devEventUpdateService.getPage(pageNumber);
-		
+
+		Page<DevEventUpdate> page = devEventUpdateService.getPage(pageNumber);
+
 		modelAndView.getModel().put("page", page);
-		
+
 		modelAndView.setViewName("app.viewDevEvents");
-		
-		return	modelAndView;
+
+		return modelAndView;
 	}
 }

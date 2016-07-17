@@ -12,7 +12,7 @@ import com.jwd.net.model.DevEventUpdateDao;
 @Service
 public class DevEventUpdateService
 {
-	private	final	static	int	PAGESIZE	=	3;
+	private	final	static	int	PAGESIZE	=	10;
 	
 	@Autowired
 	private DevEventUpdateDao devEventUpdateDao;
@@ -33,5 +33,15 @@ public class DevEventUpdateService
 		
 		return	devEventUpdateDao.findAll(request);
 
+	}
+
+	public void delete(Integer id)
+	{
+		devEventUpdateDao.delete(id);
+	}
+
+	public DevEventUpdate get(Integer id)
+	{
+		return devEventUpdateDao.findOne(id);
 	}
 }
